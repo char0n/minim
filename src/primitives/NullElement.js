@@ -1,7 +1,5 @@
 const Element = require('./Element.js');
 
-/**
- */
 class NullElement extends Element {
   constructor(content, meta, attributes) {
     super(content || null, meta, attributes);

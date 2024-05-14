@@ -103,7 +103,7 @@ class Element {
     if (this.content instanceof KeyValuePair) {
       return {
         key: this.content.key.toValue(),
-        value: this.content.value.toValue(),
+        value: this.content.value ? this.content.value.toValue() : undefined,
       };
     }
 
@@ -447,10 +447,10 @@ class Element {
   }
 
   /**
-  * Returns all of the children elements found within the element recursively.
-  * @type ArraySlice
-  * @see children
-  */
+   * Returns all of the children elements found within the element recursively.
+   * @type ArraySlice
+   * @see children
+   */
   get recursiveChildren() {
     const children = new ArraySlice();
 
