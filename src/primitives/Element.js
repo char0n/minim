@@ -1,5 +1,5 @@
 const isEqual = require('lodash/isEqual');
-const KeyValuePair = require('../KeyValuePair');
+const KeyValuePair = require('../KeyValuePair.js');
 const ArraySlice = require('../ArraySlice.js');
 
 /**

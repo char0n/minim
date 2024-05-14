@@ -1,4 +1,4 @@
-const negate = require('lodash/negate');
+const negate = require('lodash/negate.js');
 
 // Coerces an a parameter into a callback for matching elements.
 // This accepts an element name, an element type and returns a

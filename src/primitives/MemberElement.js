@@ -1,5 +1,5 @@
-const KeyValuePair = require('../KeyValuePair');
-const Element = require('./Element');
+const KeyValuePair = require('../KeyValuePair.js');
+const Element = require('./Element.js');
 
 /**
  * @class MemberElement

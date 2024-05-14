@@ -1,4 +1,4 @@
-const JSONSerialiser = require('./JSONSerialiser');
+const JSONSerialiser = require('./JSONSerialiser.js');
 
 module.exports = class JSON06Serialiser extends JSONSerialiser {
   serialise(element) {

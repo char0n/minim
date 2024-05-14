@@ -1,9 +1,9 @@
 const negate = require('lodash/negate');
 const isObject = require('lodash/isObject');
 
-const ArrayElement = require('./ArrayElement');
-const MemberElement = require('./MemberElement');
-const ObjectSlice = require('../ObjectSlice');
+const ArrayElement = require('./ArrayElement.js');
+const MemberElement = require('./MemberElement.js');
+const ObjectSlice = require('../ObjectSlice.js');
 
 /**
  * @class

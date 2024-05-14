@@ -1,4 +1,4 @@
-const Element = require('../primitives/Element');
+const Element = require('../primitives/Element.js');
 
 /** Hyperlinking MAY be used to link to other resources, provide links to
  * instructions on how to process a given element (by way of a profile or

@@ -1,5 +1,5 @@
-const Namespace = require('./Namespace');
-const elements = require('./elements');
+const Namespace = require('./Namespace.js');
+const elements = require('./elements.js');
 
 // Direct access to the Namespace class
 exports.Namespace = Namespace;
@@ -9,7 +9,7 @@ exports.namespace = function namespace(options) {
   return new Namespace(options);
 };
 
-exports.KeyValuePair = require('./KeyValuePair');
+exports.KeyValuePair = require('./KeyValuePair.js');
 
 exports.ArraySlice = elements.ArraySlice;
 exports.ObjectSlice = elements.ObjectSlice;
@@ -27,5 +27,5 @@ exports.LinkElement = elements.LinkElement;
 
 exports.refract = elements.refract;
 
-exports.JSONSerialiser = require('./serialisers/JSONSerialiser');
-exports.JSON06Serialiser = require('./serialisers/JSON06Serialiser');
+exports.JSONSerialiser = require('./serialisers/JSONSerialiser.js');
+exports.JSON06Serialiser = require('./serialisers/JSON06Serialiser.js');

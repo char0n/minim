@@ -1,5 +1,5 @@
 const negate = require('lodash/negate');
-const ArraySlice = require('./ArraySlice');
+const ArraySlice = require('./ArraySlice.js');
 
 /**
  */

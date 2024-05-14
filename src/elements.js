@@ -1,18 +1,18 @@
-const Element = require('./primitives/Element');
-const NullElement = require('./primitives/NullElement');
-const StringElement = require('./primitives/StringElement');
-const NumberElement = require('./primitives/NumberElement');
-const BooleanElement = require('./primitives/BooleanElement');
-const ArrayElement = require('./primitives/ArrayElement');
-const MemberElement = require('./primitives/MemberElement');
-const ObjectElement = require('./primitives/ObjectElement');
-const LinkElement = require('./elements/LinkElement');
-const RefElement = require('./elements/RefElement');
+const Element = require('./primitives/Element.js');
+const NullElement = require('./primitives/NullElement.js');
+const StringElement = require('./primitives/StringElement.js');
+const NumberElement = require('./primitives/NumberElement.js');
+const BooleanElement = require('./primitives/BooleanElement.js');
+const ArrayElement = require('./primitives/ArrayElement.js');
+const MemberElement = require('./primitives/MemberElement.js');
+const ObjectElement = require('./primitives/ObjectElement.js');
+const LinkElement = require('./elements/LinkElement.js');
+const RefElement = require('./elements/RefElement.js');
 
-const ArraySlice = require('./ArraySlice');
-const ObjectSlice = require('./ObjectSlice');
+const ArraySlice = require('./ArraySlice.js');
+const ObjectSlice = require('./ObjectSlice.js');
 
-const KeyValuePair = require('./KeyValuePair');
+const KeyValuePair = require('./KeyValuePair.js');
 
 /**
  * Refracts a JSON type to minim elements

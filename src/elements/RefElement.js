@@ -1,4 +1,4 @@
-const Element = require('../primitives/Element');
+const Element = require('../primitives/Element.js');
 
 /**
  * @class RefElement

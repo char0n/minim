@@ -4,8 +4,8 @@ const isNumber = require('lodash/isNumber');
 const isBoolean = require('lodash/isBoolean');
 const isObject = require('lodash/isObject');
 
-const JSONSerialiser = require('./serialisers/JSONSerialiser');
-const elements = require('./elements');
+const JSONSerialiser = require('./serialisers/JSONSerialiser.js');
+const elements = require('./elements.js');
 
 /**
  * @class

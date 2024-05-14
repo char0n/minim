@@ -1,4 +1,4 @@
-const Element = require('./Element');
+const Element = require('./Element.js');
 
 /**
  * @class NumberElement
