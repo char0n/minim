@@ -13,6 +13,7 @@ class BooleanElement extends Element {
     this.element = 'boolean';
   }
 
+  // eslint-disable-next-line class-methods-use-this
   primitive() {
     return 'boolean';
   }

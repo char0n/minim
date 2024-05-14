@@ -16,6 +16,7 @@ class ArrayElement extends Element {
     this.element = 'array';
   }
 
+  // eslint-disable-next-line class-methods-use-this
   primitive() {
     return 'array';
   }
@@ -78,9 +79,7 @@ class ArrayElement extends Element {
    * @returns {array}
    */
   flatMap(callback, thisArg) {
-    return this
-      .map(callback, thisArg)
-      .reduce((a, b) => a.concat(b), []);
+    return this.map(callback, thisArg).reduce((a, b) => a.concat(b), []);
   }
 
   /**
@@ -219,7 +218,7 @@ class ArrayElement extends Element {
     this.forEach((item, keyOrIndex, member) => {
       // We use duck-typing here to support any registered class that
       // may contain other elements.
-      if (recursive && (item.findElements !== undefined)) {
+      if (recursive && item.findElements !== undefined) {
         item.findElements(condition, {
           results,
           recursive,
@@ -248,7 +247,7 @@ class ArrayElement extends Element {
    * @returns {ArraySlice}
    */
   findByElement(element) {
-    return this.find(item => item.element === element);
+    return this.find((item) => item.element === element);
   }
 
   /**
@@ -257,7 +256,7 @@ class ArrayElement extends Element {
    * @memberof ArrayElement.prototype
    */
   findByClass(className) {
-    return this.find(item => item.classes.includes(className));
+    return this.find((item) => item.classes.includes(className));
   }
 
   /**
@@ -267,7 +266,7 @@ class ArrayElement extends Element {
    * @memberof ArrayElement.prototype
    */
   getById(id) {
-    return this.find(item => item.id.toValue() === id).first;
+    return this.find((item) => item.id.toValue() === id).first;
   }
 
   /**
@@ -276,7 +275,7 @@ class ArrayElement extends Element {
    * @returns {boolean}
    */
   includes(value) {
-    return this.content.some(element => element.equals(value));
+    return this.content.some((element) => element.equals(value));
   }
 
   /**
@@ -320,9 +319,10 @@ class ArrayElement extends Element {
   }
 
   ['fantasy-land/chain'](transform) {
-    return this
-      .map(element => transform(element), this)
-      .reduce((a, b) => a.concat(b), this.empty());
+    return this.map((element) => transform(element), this).reduce(
+      (a, b) => a.concat(b),
+      this.empty(),
+    );
   }
 
   ['fantasy-land/filter'](callback) {

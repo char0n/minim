@@ -19,7 +19,8 @@ class JSON06Serialiser extends JSONSerialiser {
       payload.meta = this.serialiseObject(element.meta);
     }
 
-    const isEnum = (element.element === 'enum' || element.attributes.keys().indexOf('enumerations') !== -1);
+    const isEnum =
+      element.element === 'enum' || element.attributes.keys().indexOf('enumerations') !== -1;
 
     if (isEnum) {
       const attributes = this.enumSerialiseAttributes(element);
@@ -65,17 +66,25 @@ class JSON06Serialiser extends JSONSerialiser {
       if (this.shouldSerialiseContent(element, content)) {
         payload.content = content;
       }
-    } else if (this.shouldSerialiseContent(element, element.content) && element instanceof this.namespace.elements.Array) {
+    } else if (
+      this.shouldSerialiseContent(element, element.content) &&
+      element instanceof this.namespace.elements.Array
+    ) {
       payload.content = [];
     }
 
     return payload;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   shouldSerialiseContent(element, content) {
-    if (element.element === 'parseResult' || element.element === 'httpRequest'
-      || element.element === 'httpResponse' || element.element === 'category'
-      || element.element === 'link') {
+    if (
+      element.element === 'parseResult' ||
+      element.element === 'httpRequest' ||
+      element.element === 'httpResponse' ||
+      element.element === 'category' ||
+      element.element === 'link'
+    ) {
       return true;
     }
 
@@ -90,7 +99,9 @@ class JSON06Serialiser extends JSONSerialiser {
     return true;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   refSerialiseContent(element, payload) {
+    // eslint-disable-next-line no-param-reassign
     delete payload.attributes;
 
     return {
@@ -99,6 +110,7 @@ class JSON06Serialiser extends JSONSerialiser {
     };
   }
 
+  // eslint-disable-next-line class-methods-use-this
   sourceMapSerialiseContent(element) {
     return element.toValue();
   }
@@ -279,7 +291,12 @@ class JSON06Serialiser extends JSONSerialiser {
         element.attributes.set('metadata', metadata);
         element.attributes.remove('meta');
       }
-    } else if (element.element === 'member' && element.key && element.key._attributes && element.key._attributes.getValue('variable')) {
+    } else if (
+      element.element === 'member' &&
+      element.key &&
+      element.key._attributes &&
+      element.key._attributes.getValue('variable')
+    ) {
       element.attributes.set('variable', element.key.attributes.get('variable'));
       element.key.attributes.remove('variable');
     }
@@ -337,8 +354,12 @@ class JSON06Serialiser extends JSONSerialiser {
     return content;
   }
 
+  // eslint-disable-next-line class-methods-use-this
   shouldRefract(element) {
-    if ((element._attributes && element.attributes.keys().length) || (element._meta && element.meta.keys().length)) {
+    if (
+      (element._attributes && element.attributes.keys().length) ||
+      (element._meta && element.meta.keys().length)
+    ) {
       return true;
     }
 
@@ -369,9 +390,13 @@ class JSON06Serialiser extends JSONSerialiser {
           return this.serialise(subItem);
         }
 
-        if (subItem.element === 'array' || subItem.element === 'object' || subItem.element === 'enum') {
+        if (
+          subItem.element === 'array' ||
+          subItem.element === 'object' ||
+          subItem.element === 'enum'
+        ) {
           // items for array or enum inside array are always serialised
-          return subItem.children.map(subSubItem => this.serialise(subSubItem));
+          return subItem.children.map((subSubItem) => this.serialise(subSubItem));
         }
 
         return subItem.toValue();
@@ -386,7 +411,7 @@ class JSON06Serialiser extends JSONSerialiser {
   }
 
   serialiseEnum(element) {
-    return element.children.map(item => this.serialise(item));
+    return element.children.map((item) => this.serialise(item));
   }
 
   serialiseObject(obj) {

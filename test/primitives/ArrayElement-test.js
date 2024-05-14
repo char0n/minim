@@ -24,15 +24,10 @@ describe('ArrayElement', () => {
     });
 
     describe('.content', () => {
-      let correctElementNames;
-      let storedElementNames;
-
-      before(() => {
-        correctElementNames = ['string', 'boolean', 'null', 'number'];
-        storedElementNames = arrayElement.content.map(el => el.element);
-      });
-
       it('stores the correct elements', () => {
+        const correctElementNames = ['string', 'boolean', 'null', 'number'];
+        const storedElementNames = arrayElement.content.map((el) => el.element);
+
         expect(storedElementNames).to.deep.equal(correctElementNames);
       });
     });
@@ -109,15 +104,15 @@ describe('ArrayElement', () => {
       it('provides flatMap to flatten one level', () => {
         const arr1 = new ArrayElement([1, 2, 3, 4]);
 
-        const mapped = arr1.map(x => [x.toValue() * 2]);
+        const mapped = arr1.map((x) => [x.toValue() * 2]);
 
         expect(mapped).to.deep.equal([[2], [4], [6], [8]]);
 
-        const flattened = arr1.flatMap(x => [x.toValue() * 2]);
+        const flattened = arr1.flatMap((x) => [x.toValue() * 2]);
 
         expect(flattened).to.deep.equal([2, 4, 6, 8]);
 
-        const flattenOnce = arr1.flatMap(x => [[x.toValue() * 2]]);
+        const flattenOnce = arr1.flatMap((x) => [[x.toValue() * 2]]);
 
         expect(flattenOnce).to.deep.equal([[2], [4], [6], [8]]);
       });
@@ -304,10 +299,12 @@ describe('ArrayElement', () => {
         {
           element: 'string',
           content: 'foobar',
-        }, {
+        },
+        {
           element: 'string',
           content: 'hello world',
-        }, {
+        },
+        {
           element: 'array',
           content: [
             {
@@ -324,10 +321,12 @@ describe('ArrayElement', () => {
                 },
               },
               content: 'baz',
-            }, {
+            },
+            {
               element: 'boolean',
               content: true,
-            }, {
+            },
+            {
               element: 'array',
               content: [
                 {
@@ -339,7 +338,8 @@ describe('ArrayElement', () => {
                     },
                   },
                   content: 'bar',
-                }, {
+                },
+                {
                   element: 'number',
                   content: 4,
                 },
@@ -356,8 +356,8 @@ describe('ArrayElement', () => {
 
     before(() => {
       doc = minim.fromRefract(refract);
-      strings = doc.children.filter(el => el.element === 'string');
-      recursiveStrings = doc.find(el => el.element === 'string');
+      strings = doc.children.filter((el) => el.element === 'string');
+      recursiveStrings = doc.find((el) => el.element === 'string');
     });
 
     describe('#children', () => {

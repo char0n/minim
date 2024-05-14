@@ -18,12 +18,14 @@ class ObjectElement extends ArrayElement {
     this.element = 'object';
   }
 
+  // eslint-disable-next-line class-methods-use-this
   primitive() {
     return 'object';
   }
 
   toValue() {
     return this.content.reduce((results, el) => {
+      // eslint-disable-next-line no-param-reassign
       results[el.key.toValue()] = el.value ? el.value.toValue() : undefined;
       return results;
     }, {});
@@ -48,9 +50,11 @@ class ObjectElement extends ArrayElement {
    * @returns {MemberElement}
    */
   getMember(name) {
-    if (name === undefined) { return undefined; }
+    if (name === undefined) {
+      return undefined;
+    }
 
-    return this.content.find(element => element.key.toValue() === name);
+    return this.content.find((element) => element.key.toValue() === name);
   }
 
   /**
@@ -114,27 +118,27 @@ class ObjectElement extends ArrayElement {
   /**
    */
   keys() {
-    return this.content.map(item => item.key.toValue());
+    return this.content.map((item) => item.key.toValue());
   }
 
   /**
    */
   values() {
-    return this.content.map(item => item.value.toValue());
+    return this.content.map((item) => item.value.toValue());
   }
 
   /**
    * @returns {boolean}
    */
   hasKey(value) {
-    return this.content.some(member => member.key.equals(value));
+    return this.content.some((member) => member.key.equals(value));
   }
 
   /**
    * @returns {array}
    */
   items() {
-    return this.content.map(item => [item.key.toValue(), item.value.toValue()]);
+    return this.content.map((item) => [item.key.toValue(), item.value.toValue()]);
   }
 
   /**
@@ -142,7 +146,7 @@ class ObjectElement extends ArrayElement {
    * @param thisArg - Value to use as this (i.e the reference Object) when executing callback
    */
   map(callback, thisArg) {
-    return this.content.map(item => callback.bind(thisArg)(item.value, item.key, item));
+    return this.content.map((item) => callback.bind(thisArg)(item.value, item.key, item));
   }
 
   /**
@@ -194,7 +198,7 @@ class ObjectElement extends ArrayElement {
    * @memberof ObjectElement.prototype
    */
   forEach(callback, thisArg) {
-    return this.content.forEach(item => callback.bind(thisArg)(item.value, item.key, item));
+    return this.content.forEach((item) => callback.bind(thisArg)(item.value, item.key, item));
   }
 }
 

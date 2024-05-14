@@ -27,15 +27,10 @@ describe('ObjectElement', () => {
   });
 
   describe('.content', () => {
-    let correctElementNames;
-    let storedElementNames;
-
-    before(() => {
-      correctElementNames = ['string', 'number'];
-      storedElementNames = objectElement.content.map(el => el.value.element);
-    });
-
     it('has the correct element names', () => {
+      const correctElementNames = ['string', 'number'];
+      const storedElementNames = objectElement.content.map((el) => el.value.element);
+
       expect(storedElementNames).to.deep.equal(correctElementNames);
     });
   });
@@ -235,7 +230,7 @@ describe('ObjectElement', () => {
     });
 
     it('provides the values', () => {
-      const values = objectElement.map(value => value.toValue());
+      const values = objectElement.map((value) => value.toValue());
       expect(values).to.deep.equal(['bar', 1]);
     });
 
@@ -307,7 +302,7 @@ describe('ObjectElement', () => {
     });
 
     it('allows for filtering on values', () => {
-      const foo = objectElement.filter(value => value.equals('bar'));
+      const foo = objectElement.filter((value) => value.equals('bar'));
       expect(foo.keys()).to.deep.equal(['foo']);
     });
 
@@ -332,7 +327,7 @@ describe('ObjectElement', () => {
     });
 
     it('allows for rejecting on values', () => {
-      const foo = objectElement.reject(value => value.equals('bar'));
+      const foo = objectElement.reject((value) => value.equals('bar'));
       expect(foo.keys()).to.deep.equal(['z']);
     });
 
@@ -367,6 +362,8 @@ describe('ObjectElement', () => {
       numbers.reduce((result, item, key, member, obj) => {
         expect(obj.content).to.contain(member);
         expect(obj).to.equal(numbers);
+
+        return null;
       });
     });
 
@@ -394,7 +391,7 @@ describe('ObjectElement', () => {
 
     it('provides the values', () => {
       const values = [];
-      objectElement.forEach(value => values.push(value.toValue()));
+      objectElement.forEach((value) => values.push(value.toValue()));
       expect(values).to.deep.equal(['bar', 1]);
     });
 

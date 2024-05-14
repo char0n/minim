@@ -400,7 +400,7 @@ describe('JSON Serialiser', () => {
         expect(element.content).to.be.undefined;
       });
 
-      it('deserialise an array', () => {
+      it('deserialise an array without content', () => {
         const object = serialiser.deserialise({
           element: 'array',
         });

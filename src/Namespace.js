@@ -1,8 +1,8 @@
-import isNull from  'lodash/isNull.js';
-import isString from  'lodash/isString.js';
-import isNumber from  'lodash/isNumber.js';
-import isBoolean from  'lodash/isBoolean.js';
-import isObject from  'lodash/isObject.js';
+import isNull from 'lodash/isNull.js';
+import isString from 'lodash/isString.js';
+import isNumber from 'lodash/isNumber.js';
+import isBoolean from 'lodash/isBoolean.js';
+import isObject from 'lodash/isObject.js';
 
 import JSONSerialiser from './serialisers/JSONSerialiser.js';
 import * as elements from './elements.js';
@@ -54,8 +54,7 @@ class Namespace {
    */
   useDefault() {
     // Set up classes for default elements
-    this
-      .register('null', elements.NullElement)
+    this.register('null', elements.NullElement)
       .register('string', elements.StringElement)
       .register('number', elements.NumberElement)
       .register('boolean', elements.BooleanElement)
@@ -67,8 +66,7 @@ class Namespace {
 
     // Add instance detection functions to convert existing objects into
     // the corresponding refract elements.
-    this
-      .detect(isNull, elements.NullElement, false)
+    this.detect(isNull, elements.NullElement, false)
       .detect(isString, elements.StringElement, false)
       .detect(isNumber, elements.NumberElement, false)
       .detect(isBoolean, elements.BooleanElement, false)
@@ -125,7 +123,9 @@ class Namespace {
    * unmodified.
    */
   toElement(value) {
-    if (value instanceof this.Element) { return value; }
+    if (value instanceof this.Element) {
+      return value;
+    }
 
     let element;
 

@@ -219,10 +219,7 @@ describe('JSON 0.6 Serialiser', () => {
       sampleNorth.element = 'enum';
       const sampleEast = new minim.Element(new minim.elements.String('East'));
       sampleEast.element = 'enum';
-      const samples = new minim.elements.Array([
-        sampleNorth,
-        sampleEast,
-      ]);
+      const samples = new minim.elements.Array([sampleNorth, sampleEast]);
 
       const enumeration = new minim.Element(new minim.elements.String('South'));
       enumeration.element = 'enum';
@@ -380,10 +377,7 @@ describe('JSON 0.6 Serialiser', () => {
             ],
           ],
         },
-        content: [
-          { element: 'object' },
-          { element: 'array' },
-        ],
+        content: [{ element: 'object' }, { element: 'array' }],
       });
     });
 
@@ -418,10 +412,7 @@ describe('JSON 0.6 Serialiser', () => {
       sampleNorth.element = 'enum';
       const sampleEast = new minim.Element(new minim.elements.String('East'));
       sampleEast.element = 'enum';
-      const samples = new minim.elements.Array([
-        sampleNorth,
-        sampleEast,
-      ]);
+      const samples = new minim.elements.Array([sampleNorth, sampleEast]);
 
       sampleNorth.content.attributes.set('typeAttributes', ['fixed']);
       sampleEast.content.attributes.set('typeAttributes', ['fixed']);
@@ -803,9 +794,7 @@ describe('JSON 0.6 Serialiser', () => {
 
     it('serialises a sourceMap element as values', () => {
       const element = new minim.elements.Element(
-        new minim.elements.Array(
-          [new minim.elements.Array([1, 2])]
-        )
+        new minim.elements.Array([new minim.elements.Array([1, 2])]),
       );
       element.element = 'sourceMap';
 
@@ -841,9 +830,7 @@ describe('JSON 0.6 Serialiser', () => {
     });
 
     it('serialises a dataStructure element inside an array', () => {
-      const element = new minim.elements.Element(
-        new minim.elements.String('Hello')
-      );
+      const element = new minim.elements.Element(new minim.elements.String('Hello'));
       element.element = 'dataStructure';
 
       const object = serialiser.serialise(element);
@@ -1095,7 +1082,6 @@ describe('JSON 0.6 Serialiser', () => {
       expect(element.title.content).to.equal('hello');
     });
 
-
     it('deserialise attributes', () => {
       const element = serialiser.deserialise({
         element: 'string',
@@ -1149,10 +1135,7 @@ describe('JSON 0.6 Serialiser', () => {
         });
 
         expect(element.element).to.equal('enum');
-        expect(element.attributes.get('enumerations').toValue()).to.deep.equal([
-          3,
-          4,
-        ]);
+        expect(element.attributes.get('enumerations').toValue()).to.deep.equal([3, 4]);
         expect(element.content).to.be.undefined;
       });
 
@@ -1220,11 +1203,7 @@ describe('JSON 0.6 Serialiser', () => {
         expect(samples.get(2).element).to.equal('enum');
         expect(samples.get(2).content).to.be.instanceof(minim.elements.Number);
 
-        expect(samples.toValue()).to.deep.equal([
-          4,
-          5,
-          6,
-        ]);
+        expect(samples.toValue()).to.deep.equal([4, 5, 6]);
       });
 
       it('deserialises with default', () => {
@@ -1309,11 +1288,7 @@ describe('JSON 0.6 Serialiser', () => {
         expect(samples.get(2).element).to.equal('enum');
         expect(samples.get(2).content).to.be.instanceof(minim.elements.Number);
 
-        expect(samples.toValue()).to.deep.equal([
-          4,
-          5,
-          6,
-        ]);
+        expect(samples.toValue()).to.deep.equal([4, 5, 6]);
 
         const defaultElement = element.attributes.get('default');
         expect(defaultElement.element).to.equal('enum');
@@ -1482,7 +1457,7 @@ describe('JSON 0.6 Serialiser', () => {
         expect(element.content).to.be.undefined;
       });
 
-      it('deserialise an array', () => {
+      it('deserialise an array without content', () => {
         const object = serialiser.deserialise({
           element: 'array',
         });

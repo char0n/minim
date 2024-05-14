@@ -1,12 +1,14 @@
 import { expect } from 'chai';
 
 import * as minim from '../src/minim.js';
-import  Namespace from '../src/Namespace.js';
+import Namespace from '../src/Namespace.js';
 import JSONSerialiser from '../src/serialisers/JSONSerialiser.js';
 
 describe('Minim namespace', () => {
   let namespace;
-  let NullElement; let ObjectElement; let StringElement;
+  let NullElement;
+  let ObjectElement;
+  let StringElement;
 
   beforeEach(() => {
     namespace = new Namespace();
@@ -33,7 +35,7 @@ describe('Minim namespace', () => {
     });
 
     it('can be created empty', () => {
-      expect((new Namespace({ noDefault: true })).elementMap).to.deep.equal({});
+      expect(new Namespace({ noDefault: true }).elementMap).to.deep.equal({});
     });
 
     it('can be added after instantiation', () => {
@@ -115,10 +117,10 @@ describe('Minim namespace', () => {
     it('should contain registered element classes', () => {
       const { elements } = namespace;
 
-      const elementValues = Object.keys(elements).map(name => elements[name]);
+      const elementValues = Object.keys(elements).map((name) => elements[name]);
       elementValues.shift();
 
-      const mapValues = Object.keys(namespace.elementMap).map(name => namespace.elementMap[name]);
+      const mapValues = Object.keys(namespace.elementMap).map((name) => namespace.elementMap[name]);
 
       expect(elementValues).to.deep.equal(mapValues);
     });

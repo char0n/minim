@@ -23,6 +23,7 @@
     "build:cjs": "cross-env BABEL_ENV=cjs babel src --out-dir cjs --extensions '.js' --out-file-extension '.cjs'",
     "build:browser": "browserify -d -s minim -t [ babelify ] -o dist/minim.js dist/lib/minim.js",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "mocha"
   },
   "repository": {
@@ -50,6 +51,7 @@
     "eslint-plugin-mocha": "=10.4.3",
     "eslint-plugin-prettier": "=5.1.3",
     "fantasy-land": "^3.5.0",
-    "mocha": "^10.4.0"
+    "mocha": "^10.4.0",
+    "prettier": "=3.2.5"
   }
 }

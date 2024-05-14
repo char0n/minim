@@ -13,6 +13,7 @@ class StringElement extends Element {
     this.element = 'string';
   }
 
+  // eslint-disable-next-line class-methods-use-this
   primitive() {
     return 'string';
   }

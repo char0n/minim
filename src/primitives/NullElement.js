@@ -6,10 +6,12 @@ class NullElement extends Element {
     this.element = 'null';
   }
 
+  // eslint-disable-next-line class-methods-use-this
   primitive() {
     return 'null';
   }
 
+  // eslint-disable-next-line class-methods-use-this
   set() {
     return new Error('Cannot set the value of null');
   }

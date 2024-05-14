@@ -2,7 +2,6 @@ import { expect } from 'chai';
 
 import { Element, StringElement, ArraySlice } from '../src/minim.js';
 
-
 describe('ArraySlice', () => {
   const thisArg = { message: 42 };
 
@@ -68,7 +67,7 @@ describe('ArraySlice', () => {
       const two = new Element('two');
       const slice = new ArraySlice([one, two]);
 
-      const filtered = slice.filter(elem => elem instanceof StringElement);
+      const filtered = slice.filter((elem) => elem instanceof StringElement);
 
       expect(filtered).to.be.instanceof(ArraySlice);
       expect(filtered.elements).to.deep.equal([one]);
@@ -106,7 +105,7 @@ describe('ArraySlice', () => {
       const two = new Element('two');
       const slice = new ArraySlice([one, two]);
 
-      const filtered = slice.reject(elem => elem instanceof StringElement);
+      const filtered = slice.reject((elem) => elem instanceof StringElement);
 
       expect(filtered).to.be.instanceof(ArraySlice);
       expect(filtered.elements).to.deep.equal([two]);
@@ -130,7 +129,7 @@ describe('ArraySlice', () => {
       const two = new Element('two');
       const slice = new ArraySlice([one, two]);
 
-      const element = slice.find(e => e.toValue() === 'two');
+      const element = slice.find((e) => e.toValue() === 'two');
 
       expect(element).to.be.equal(two);
     });
@@ -140,7 +139,7 @@ describe('ArraySlice', () => {
       const two = new StringElement('two');
       const slice = new ArraySlice([one, two]);
 
-      const element = slice.find(elem => elem instanceof StringElement);
+      const element = slice.find((elem) => elem instanceof StringElement);
 
       expect(element).to.be.equal(two);
     });
@@ -225,11 +224,15 @@ describe('ArraySlice', () => {
    * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce#Examples
    */
   it('provides reduce to flatten an array of arrays', () => {
-    const slice = new ArraySlice([[0, 1], [2, 3], [4, 5]]);
+    const slice = new ArraySlice([
+      [0, 1],
+      [2, 3],
+      [4, 5],
+    ]);
 
     const flattened = slice.reduce(
       (accumulator, currentValue) => accumulator.concat(currentValue),
-      []
+      [],
     );
 
     expect(flattened).to.deep.equal([0, 1, 2, 3, 4, 5]);
@@ -241,14 +244,11 @@ describe('ArraySlice', () => {
   it('provides flatMap as an alternative to reduce', () => {
     const arr1 = new ArraySlice([1, 2, 3, 4]);
 
-    const reduced = arr1.reduce(
-      (acc, x) => acc.concat([x * 2]),
-      []
-    );
+    const reduced = arr1.reduce((acc, x) => acc.concat([x * 2]), []);
 
     expect(reduced).to.deep.equal([2, 4, 6, 8]);
 
-    const flattened = arr1.flatMap(x => [x * 2]);
+    const flattened = arr1.flatMap((x) => [x * 2]);
 
     expect(flattened).to.deep.equal(reduced);
   });
@@ -259,24 +259,21 @@ describe('ArraySlice', () => {
   it('provides flatMap to flatten one level', () => {
     const arr1 = new ArraySlice([1, 2, 3, 4]);
 
-    const mapped = arr1.map(x => [x * 2]);
+    const mapped = arr1.map((x) => [x * 2]);
 
     expect(mapped).to.deep.equal([[2], [4], [6], [8]]);
 
-    const flattened = arr1.flatMap(x => [x * 2]);
+    const flattened = arr1.flatMap((x) => [x * 2]);
 
     expect(flattened).to.deep.equal([2, 4, 6, 8]);
 
-    const flattenOnce = arr1.flatMap(x => [[x * 2]]);
+    const flattenOnce = arr1.flatMap((x) => [[x * 2]]);
 
     expect(flattenOnce).to.deep.equal([[2], [4], [6], [8]]);
   });
 
   describe('#includes', () => {
-    const slice = new ArraySlice([
-      new Element('one'),
-      new Element('two'),
-    ]);
+    const slice = new ArraySlice([new Element('one'), new Element('two')]);
 
     it('returns true when the slice contains an matching value', () => {
       expect(slice.includes('one')).to.be.true;

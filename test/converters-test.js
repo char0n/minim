@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 import { namespace } from '../src/minim.js';
 
-const minim = namespace()
+const minim = namespace();
 
 describe('Minim Converters', () => {
   describe('convertToElement', () => {
@@ -10,11 +10,9 @@ describe('Minim Converters', () => {
       let returnedElement;
 
       context(`when given ${name}`, () => {
-        before(() => {
-          returnedElement = minim.toElement(val);
-        });
-
         it(`returns ${name}`, () => {
+          returnedElement = minim.toElement(val);
+
           expect(returnedElement.element).to.equal(name);
         });
       });
@@ -76,7 +74,8 @@ describe('Minim Converters', () => {
           {
             element: 'number',
             content: 1,
-          }, {
+          },
+          {
             element: 'number',
             content: 2,
           },

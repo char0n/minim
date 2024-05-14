@@ -6,12 +6,12 @@ import negate from 'lodash/negate.js';
 function coerceElementMatchingCallback(value) {
   // Element Name
   if (typeof value === 'string') {
-    return element => element.element === value;
+    return (element) => element.element === value;
   }
 
   // Element Type
   if (value.constructor && value.extend) {
-    return element => element instanceof value;
+    return (element) => element instanceof value;
   }
 
   return value;
@@ -33,7 +33,7 @@ class ArraySlice {
    * @returns {Array}
    */
   toValue() {
-    return this.elements.map(element => element.toValue());
+    return this.elements.map((element) => element.toValue());
   }
 
   // High Order Functions
@@ -54,9 +54,7 @@ class ArraySlice {
    * @returns {array}
    */
   flatMap(callback, thisArg) {
-    return this
-      .map(callback, thisArg)
-      .reduce((a, b) => a.concat(b), []);
+    return this.map(callback, thisArg).reduce((a, b) => a.concat(b), []);
   }
 
   /**
@@ -87,8 +85,8 @@ class ArraySlice {
    * @memberof ArraySlice.prototype
    */
   filter(callback, thisArg) {
-    callback = coerceElementMatchingCallback(callback);
-    return new ArraySlice(this.elements.filter(callback, thisArg));
+    const castedCallback = coerceElementMatchingCallback(callback);
+    return new ArraySlice(this.elements.filter(castedCallback, thisArg));
   }
 
   /**
@@ -98,8 +96,8 @@ class ArraySlice {
    * @memberof ArraySlice.prototype
    */
   reject(callback, thisArg) {
-    callback = coerceElementMatchingCallback(callback);
-    return new ArraySlice(this.elements.filter(negate(callback), thisArg));
+    const castedCallback = coerceElementMatchingCallback(callback);
+    return new ArraySlice(this.elements.filter(negate(castedCallback), thisArg));
   }
 
   /**
@@ -110,8 +108,8 @@ class ArraySlice {
    * @memberof ArraySlice.prototype
    */
   find(callback, thisArg) {
-    callback = coerceElementMatchingCallback(callback);
-    return this.elements.find(callback, thisArg);
+    const castedCallback = coerceElementMatchingCallback(callback);
+    return this.elements.find(castedCallback, thisArg);
   }
 
   /**
@@ -138,7 +136,7 @@ class ArraySlice {
    * @memberof ArraySlice.prototype
    */
   includes(value) {
-    return this.elements.some(element => element.equals(value));
+    return this.elements.some((element) => element.equals(value));
   }
 
   // Mutation

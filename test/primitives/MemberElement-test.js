@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+
 import { namespace } from '../../src/minim.js';
 
 const minim = namespace();

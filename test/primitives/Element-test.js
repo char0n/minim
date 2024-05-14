@@ -1,18 +1,28 @@
 import { expect } from 'chai';
 
-import { namespace, RefElement, NumberElement, ArraySlice, KeyValuePair, ObjectSlice } from '../../src/minim.js';
+import {
+  namespace,
+  RefElement,
+  NumberElement,
+  ArraySlice,
+  KeyValuePair,
+  ObjectSlice,
+} from '../../src/minim.js';
 
 const minim = namespace();
 
 describe('Element', () => {
   context('when initializing', () => {
     it('should initialize the correct meta data', () => {
-      const element = new minim.Element({}, {
-        id: 'foobar',
-        classes: ['a', 'b'],
-        title: 'Title',
-        description: 'Description',
-      });
+      const element = new minim.Element(
+        {},
+        {
+          id: 'foobar',
+          classes: ['a', 'b'],
+          title: 'Title',
+          description: 'Description',
+        },
+      );
 
       expect(element.meta.get('id').toValue()).to.equal('foobar');
       expect(element.meta.get('classes').toValue()).to.deep.equal(['a', 'b']);
@@ -148,17 +158,13 @@ describe('Element', () => {
     it('should allow setting array of elements', () => {
       element.content = [new minim.Element(1)];
 
-      expect(element.content).to.deep.equal([
-        new minim.Element(1),
-      ]);
+      expect(element.content).to.deep.equal([new minim.Element(1)]);
     });
 
     it('should allow setting array of non-elements', () => {
       element.content = [true];
 
-      expect(element.content).to.deep.equal([
-        new minim.elements.Boolean(true),
-      ]);
+      expect(element.content).to.deep.equal([new minim.elements.Boolean(true)]);
     });
 
     it('should allow setting object', () => {
@@ -166,9 +172,7 @@ describe('Element', () => {
         name: 'Doe',
       };
 
-      expect(element.content).to.deep.equal([
-        new minim.elements.Member('name', 'Doe'),
-      ]);
+      expect(element.content).to.deep.equal([new minim.elements.Member('name', 'Doe')]);
     });
 
     it('should allow setting KeyValuePair', () => {
@@ -180,44 +184,32 @@ describe('Element', () => {
     it('should allow setting ArraySlice (converted to array)', () => {
       element.content = new ArraySlice([1, 2]);
 
-      expect(element.content).to.deep.equal([
-        new NumberElement(1),
-        new NumberElement(2),
-      ]);
+      expect(element.content).to.deep.equal([new NumberElement(1), new NumberElement(2)]);
     });
 
     it('should allow setting ObjectSlice (converted to array)', () => {
       const MemberElement = minim.getElementClass('member');
       element.content = new ObjectSlice([new MemberElement('name', 'Doe')]);
 
-      expect(element.content).to.deep.equal([
-        new MemberElement('name', 'Doe'),
-      ]);
+      expect(element.content).to.deep.equal([new MemberElement('name', 'Doe')]);
     });
   });
 
   describe('#element', () => {
     context('when getting an element that has not been set', () => {
-      let el;
-
-      before(() => {
-        el = new minim.Element();
-      });
-
       it('returns base element', () => {
+        const el = new minim.Element();
+
         expect(el.element).to.equal('element');
       });
     });
 
     context('when setting the element', () => {
-      let el;
-
-      before(() => {
-        el = new minim.Element();
-        el.element = 'foobar';
-      });
-
       it('sets the element correctly', () => {
+        const el = new minim.Element();
+
+        el.element = 'foobar';
+
         expect(el.element).to.equal('foobar');
       });
     });
@@ -234,11 +226,14 @@ describe('Element', () => {
     let el;
 
     before(() => {
-      el = new minim.elements.Object({
-        foo: 'bar',
-      }, {
-        id: 'foobar',
-      });
+      el = new minim.elements.Object(
+        {
+          foo: 'bar',
+        },
+        {
+          id: 'foobar',
+        },
+      );
     });
 
     it('returns true when they are equal', () => {
@@ -347,10 +342,8 @@ describe('Element', () => {
 
   describe('hyperlinking', () => {
     context('when converting from Refract with links', () => {
-      let el;
-
-      before(() => {
-        el = minim.fromRefract({
+      it('correctly loads the links', () => {
+        const el = minim.fromRefract({
           element: 'string',
           meta: {
             links: {
@@ -374,10 +367,8 @@ describe('Element', () => {
           },
           content: 'foobar',
         });
-      });
-
-      it('correctly loads the links', () => {
         const link = el.meta.get('links').first;
+
         expect(link.element).to.equal('link');
         expect(link.relation.toValue()).to.equal('foo');
         expect(link.href.toValue()).to.equal('/bar');
@@ -386,28 +377,21 @@ describe('Element', () => {
 
     describe('#links', () => {
       context('when `links` is empty', () => {
-        let el;
-
-        before(() => {
-          // String with no links
-          el = minim.fromRefract({
+        it('returns an empty array', () => {
+          const el = minim.fromRefract({
             element: 'string',
             content: 'foobar',
           });
-        });
 
-        it('returns an empty array', () => {
           expect(el.links).to.have.length(0);
           expect(el.links.toValue()).to.deep.equal([]);
         });
       });
 
       context('when there are existing `links`', () => {
-        let el;
-
         context('refract', () => {
-          before(() => {
-            el = minim.fromRefract({
+          it('provides the links from meta', () => {
+            const el = minim.fromRefract({
               element: 'string',
               meta: {
                 links: {
@@ -431,10 +415,8 @@ describe('Element', () => {
               },
               content: 'foobar',
             });
-          });
-
-          it('provides the links from meta', () => {
             const link = el.links.first;
+
             expect(el.links).to.have.length(1);
             expect(link.relation.toValue()).to.equal('foo');
             expect(link.href.toValue()).to.equal('/bar');
@@ -445,9 +427,7 @@ describe('Element', () => {
 
     it('allows setting links', () => {
       const element = new minim.Element();
-      element.links = new minim.elements.Array([
-        new minim.elements.Link('el'),
-      ]);
+      element.links = new minim.elements.Array([new minim.elements.Link('el')]);
 
       expect(element.links).to.be.instanceof(minim.elements.Array);
       expect(element.links.length).to.equal(1);
@@ -544,9 +524,7 @@ describe('Element', () => {
 
     it('finds direct element', () => {
       const StringElement = minim.getElementClass('string');
-      const element = new minim.Element(
-        new StringElement('Hello World')
-      );
+      const element = new minim.Element(new StringElement('Hello World'));
 
       const result = element.findRecursive('string');
 
@@ -587,11 +565,7 @@ describe('Element', () => {
     it('finds non-direct element inside element', () => {
       const StringElement = minim.getElementClass('string');
 
-      const element = new minim.Element(
-        new minim.Element(
-          new StringElement('Hello World')
-        )
-      );
+      const element = new minim.Element(new minim.Element(new StringElement('Hello World')));
 
       const result = element.findRecursive('string');
 
@@ -603,11 +577,7 @@ describe('Element', () => {
       const StringElement = minim.getElementClass('string');
       const ArrayElement = minim.getElementClass('array');
 
-      const element = new minim.Element(
-        new ArrayElement([
-          new StringElement('Hello World'),
-        ])
-      );
+      const element = new minim.Element(new ArrayElement([new StringElement('Hello World')]));
 
       const result = element.findRecursive('string');
 
@@ -622,14 +592,12 @@ describe('Element', () => {
       const StringElement = minim.getElementClass('string');
 
       const element = new ObjectElement();
-      element.push(new MemberElement(
-        new ArrayElement([new StringElement('key1')]),
-        new NumberElement(1)
-      ));
-      element.push(new MemberElement(
-        new NumberElement(2),
-        new ArrayElement([new StringElement('value2')])
-      ));
+      element.push(
+        new MemberElement(new ArrayElement([new StringElement('key1')]), new NumberElement(1)),
+      );
+      element.push(
+        new MemberElement(new NumberElement(2), new ArrayElement([new StringElement('value2')])),
+      );
 
       const result = element.findRecursive('string');
 
@@ -644,17 +612,14 @@ describe('Element', () => {
       const MemberElement = minim.getElementClass('member');
 
       const object = new ObjectElement();
-      object.push(new MemberElement(
-        new StringElement('Three'),
-        new ArrayElement([
-          new StringElement('Four'),
-        ])
-      ));
+      object.push(
+        new MemberElement(
+          new StringElement('Three'),
+          new ArrayElement([new StringElement('Four')]),
+        ),
+      );
 
-      const element = new ArrayElement([
-        new StringElement('One'),
-        object,
-      ]);
+      const element = new ArrayElement([new StringElement('One'), object]);
 
       element.freeze();
 
@@ -673,27 +638,20 @@ describe('Element', () => {
     });
 
     it('returns element value', () => {
-      const element = new minim.Element(
-        new minim.Element('Hello')
-      );
+      const element = new minim.Element(new minim.Element('Hello'));
 
       expect(element.toValue()).to.equal('Hello');
     });
 
     it('returns array of element value', () => {
-      const element = new minim.Element([
-        new minim.Element('Hello'),
-      ]);
+      const element = new minim.Element([new minim.Element('Hello')]);
 
       expect(element.toValue()).to.deep.equal(['Hello']);
     });
 
     it('returns KeyValuePair value', () => {
       const element = new minim.Element(
-        new KeyValuePair(
-          new minim.Element('name'),
-          new minim.Element('doe')
-        )
+        new KeyValuePair(new minim.Element('name'), new minim.Element('doe')),
       );
 
       expect(element.toValue()).to.deep.equal({
@@ -703,11 +661,7 @@ describe('Element', () => {
     });
 
     it('returns KeyValuePair without value', () => {
-      const element = new minim.Element(
-        new KeyValuePair(
-          new minim.Element('name')
-        )
-      );
+      const element = new minim.Element(new KeyValuePair(new minim.Element('name')));
 
       const value = element.toValue();
       expect(value.key).to.equal('name');
@@ -716,10 +670,7 @@ describe('Element', () => {
 
     it('returns KeyValuePair with empty value', () => {
       const element = new minim.Element(
-        new KeyValuePair(
-          new minim.Element('name'),
-          new minim.Element()
-        )
+        new KeyValuePair(new minim.Element('name'), new minim.Element()),
       );
 
       const value = element.toValue();
@@ -923,7 +874,9 @@ describe('Element', () => {
     it('throws error when creating ref element from element without ID', () => {
       const element = new minim.Element();
 
-      expect(() => { element.toRef(); }).to.throw();
+      expect(() => {
+        element.toRef();
+      }).to.throw();
     });
   });
 });

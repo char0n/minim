@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+
 import { RefElement, StringElement } from '../../src/minim.js';
 
 describe('Ref Element', () => {

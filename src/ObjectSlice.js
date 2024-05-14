@@ -4,11 +4,13 @@ import ArraySlice from './ArraySlice.js';
 
 class ObjectSlice extends ArraySlice {
   map(callback, thisArg) {
-    return this.elements.map(member => callback.bind(thisArg)(member.value, member.key, member));
+    return this.elements.map((member) => callback.bind(thisArg)(member.value, member.key, member));
   }
 
   filter(callback, thisArg) {
-    return new ObjectSlice(this.elements.filter(member => callback.bind(thisArg)(member.value, member.key, member)));
+    return new ObjectSlice(
+      this.elements.filter((member) => callback.bind(thisArg)(member.value, member.key, member)),
+    );
   }
 
   reject(callback, thisArg) {
@@ -16,7 +18,9 @@ class ObjectSlice extends ArraySlice {
   }
 
   forEach(callback, thisArg) {
-    return this.elements.forEach((member, index) => { callback.bind(thisArg)(member.value, member.key, member, index); });
+    return this.elements.forEach((member, index) => {
+      callback.bind(thisArg)(member.value, member.key, member, index);
+    });
   }
 
   /**
@@ -30,7 +34,7 @@ class ObjectSlice extends ArraySlice {
    * @returns {array}
    */
   values() {
-    return this.map(value => value.toValue());
+    return this.map((value) => value.toValue());
   }
 }
 

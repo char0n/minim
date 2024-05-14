@@ -8,10 +8,8 @@ import MemberElement from './primitives/MemberElement.js';
 import ObjectElement from './primitives/ObjectElement.js';
 import LinkElement from './elements/LinkElement.js';
 import RefElement from './elements/RefElement.js';
-
 import ArraySlice from './ArraySlice.js';
 import ObjectSlice from './ObjectSlice.js';
-
 import KeyValuePair from './KeyValuePair.js';
 
 /**
@@ -74,9 +72,7 @@ export {
   ObjectElement,
   LinkElement,
   RefElement,
-
   refract,
-
   ArraySlice,
   ObjectSlice,
   KeyValuePair,

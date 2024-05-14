@@ -1,13 +1,12 @@
 import { expect } from 'chai';
+
 import { MemberElement, ObjectSlice } from '../src/minim.js';
 
 describe('ObjectSlice', () => {
   const thisArg = { message: 42 };
 
   it('provides map', () => {
-    const slice = new ObjectSlice([
-      new MemberElement('name', 'Doe'),
-    ]);
+    const slice = new ObjectSlice([new MemberElement('name', 'Doe')]);
 
     const result = slice.map(function map(value) {
       expect(this).to.deep.equal(thisArg);

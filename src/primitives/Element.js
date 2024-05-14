@@ -48,6 +48,7 @@ class Element {
     }
 
     this.children.forEach((element) => {
+      // eslint-disable-next-line no-param-reassign
       element.parent = this;
       element.freeze();
     }, this);
@@ -59,9 +60,8 @@ class Element {
     Object.freeze(this);
   }
 
-  primitive() {
-
-  }
+  // eslint-disable-next-line class-methods-use-this
+  primitive() {}
 
   /**
    * Creates a deep clone of the instance
@@ -83,7 +83,7 @@ class Element {
       if (this.content.clone) {
         copy.content = this.content.clone();
       } else if (Array.isArray(this.content)) {
-        copy.content = this.content.map(element => element.clone());
+        copy.content = this.content.map((element) => element.clone());
       } else {
         copy.content = this.content;
       }
@@ -109,7 +109,7 @@ class Element {
     }
 
     if (this.content && this.content.map) {
-      return this.content.map(element => element.toValue(), this);
+      return this.content.map((element) => element.toValue(), this);
     }
 
     return this.content;
@@ -143,7 +143,9 @@ class Element {
    */
   findRecursive(...elementNames) {
     if (arguments.length > 1 && !this.isFrozen) {
-      throw new Error('Cannot find recursive with multiple element names without first freezing the element. Call `element.freeze()`');
+      throw new Error(
+        'Cannot find recursive with multiple element names without first freezing the element. Call `element.freeze()`',
+      );
     }
 
     const elementName = elementNames.pop();
@@ -193,9 +195,9 @@ class Element {
 
     if (!elementNames.isEmpty) {
       elements = elements.filter((element) => {
-        let parentElements = element.parents.map(e => e.element);
+        let parentElements = element.parents.map((e) => e.element);
 
-        // eslint-disable-next-line no-restricted-syntax
+        // eslint-disable-next-line no-restricted-syntax, guard-for-in
         for (const namesIndex in elementNames) {
           const name = elementNames[namesIndex];
           const index = parentElements.indexOf(name);
@@ -263,11 +265,11 @@ class Element {
     } else if (value instanceof ArraySlice) {
       this.content = value.elements;
     } else if (
-      typeof value == 'string'
-      || typeof value == 'number'
-      || typeof value == 'boolean'
-      || value === 'null'
-      || value == undefined
+      typeof value === 'string' ||
+      typeof value === 'number' ||
+      typeof value === 'boolean' ||
+      value === 'null' ||
+      value == null
     ) {
       // Primitive Values
       this._content = value;
@@ -276,7 +278,7 @@ class Element {
     } else if (Array.isArray(value)) {
       this._content = value.map(this.refract);
     } else if (typeof value === 'object') {
-      this._content = Object.keys(value).map(key => new this.MemberElement(key, value[key]));
+      this._content = Object.keys(value).map((key) => new this.MemberElement(key, value[key]));
     } else {
       throw new Error('Cannot set content to given value');
     }

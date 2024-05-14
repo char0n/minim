@@ -11,7 +11,7 @@ describe('ArrayElement', () => {
 
   describe('Functor', () => {
     it('can transform elements into new ArrayElement', () => {
-      const result = array[fl.map](n => new namespace.elements.Number(n.toValue() * 2));
+      const result = array[fl.map]((n) => new namespace.elements.Number(n.toValue() * 2));
 
       expect(result).to.be.instanceof(ArrayElement);
       expect(result.toValue()).to.deep.equal([2, 4, 6, 8]);
@@ -60,7 +60,7 @@ describe('ArrayElement', () => {
 
   describe('Chain', () => {
     it('can transform and chain results into new ArrayElement', () => {
-      const duplicate = n => new ArrayElement([n, n]);
+      const duplicate = (n) => new ArrayElement([n, n]);
       const result = array[fl.chain](duplicate);
 
       expect(result).to.be.instanceof(ArrayElement);
@@ -70,7 +70,11 @@ describe('ArrayElement', () => {
 
   describe('Foldable', () => {
     it('can reduce results into new ArrayElement', () => {
-      const result = array[fl.reduce]((accumulator, element) => accumulator.concat(new ArrayElement([element.toValue(), element.toValue()])), new ArrayElement());
+      const result = array[fl.reduce](
+        (accumulator, element) =>
+          accumulator.concat(new ArrayElement([element.toValue(), element.toValue()])),
+        new ArrayElement(),
+      );
 
       expect(result).to.be.instanceof(ArrayElement);
       expect(result.toValue()).to.deep.equal([1, 1, 2, 2, 3, 3, 4, 4]);
