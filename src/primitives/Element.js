@@ -1,4 +1,4 @@
-import isEqual from 'lodash/isEqual.js';
+import { equals } from 'ramda';
 
 import KeyValuePair from '../KeyValuePair.js';
 import ArraySlice from '../ArraySlice.js';
@@ -222,7 +222,7 @@ class Element {
   }
 
   equals(value) {
-    return isEqual(this.toValue(), value);
+    return equals(this.toValue(), value);
   }
 
   getMetaProperty(name, value) {

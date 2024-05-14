@@ -1,6 +1,3 @@
-import negate from 'lodash/negate.js';
-import isObject from 'lodash/isObject.js';
-
 import ArrayElement from './ArrayElement.js';
 import MemberElement from './MemberElement.js';
 import ObjectSlice from '../ObjectSlice.js';
@@ -94,7 +91,7 @@ class ObjectElement extends ArrayElement {
    * If an object is given, each key is set to its respective value
    */
   set(keyOrObject, value) {
-    if (isObject(keyOrObject)) {
+    if (keyOrObject !== null && typeof keyOrObject === 'object' && !Array.isArray(keyOrObject)) {
       Object.keys(keyOrObject).forEach((objectKey) => {
         this.set(objectKey, keyOrObject[objectKey]);
       });
@@ -188,7 +185,10 @@ class ObjectElement extends ArrayElement {
    * @memberof ObjectElement.prototype
    */
   reject(callback, thisArg) {
-    return this.filter(negate(callback), thisArg);
+    const rejectCallback = function reject(...args) {
+      return !callback.bind(this)(...args);
+    };
+    return this.filter(rejectCallback, thisArg);
   }
 
   /**

@@ -1,5 +1,3 @@
-import negate from 'lodash/negate.js';
-
 import ArraySlice from './ArraySlice.js';
 
 class ObjectSlice extends ArraySlice {
@@ -14,7 +12,10 @@ class ObjectSlice extends ArraySlice {
   }
 
   reject(callback, thisArg) {
-    return this.filter(negate(callback.bind(thisArg)));
+    const rejectCallback = function reject(...args) {
+      return !callback.bind(this)(...args);
+    };
+    return this.filter(rejectCallback, thisArg);
   }
 
   forEach(callback, thisArg) {

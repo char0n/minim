@@ -33,7 +33,7 @@
   "keywords": ["JSON", "Refract"],
   "homepage": "https://github.com/char0n/minim",
   "dependencies": {
-    "lodash": "^4.15.0"
+    "ramda": "~0.30.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.24.5",

@@ -1,5 +1,3 @@
-import negate from 'lodash/negate.js';
-
 // Coerces a parameter into a callback for matching elements.
 // This accepts an element name, an element type and returns a
 // callback to match for those elements.
@@ -97,7 +95,10 @@ class ArraySlice {
    */
   reject(callback, thisArg) {
     const castedCallback = coerceElementMatchingCallback(callback);
-    return new ArraySlice(this.elements.filter(negate(castedCallback), thisArg));
+    const rejectCallback = function reject(...args) {
+      return !castedCallback.bind(this)(...args);
+    };
+    return new ArraySlice(this.elements.filter(rejectCallback, thisArg));
   }
 
   /**
