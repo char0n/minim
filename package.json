@@ -12,7 +12,15 @@
     }
   ],
   "license": "(MIT AND Apache-2.0)",
-  "main": "lib/minim.js",
+  "main": "./cjs/minim.cjs",
+  "types": "./types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "import": "./es/minim.mjs",
+      "require": "./cjs/minim.cjs"
+    }
+  },
   "bugs": {
     "url": "https://github.com/refractproject/minim/issues",
     "email": "vladimir.gorej@gmail.com"
