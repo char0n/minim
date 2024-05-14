@@ -1,0 +1,11 @@
+ts-minim
+Copyright 2024 Vladimír Gorej
+ts-minim is licensed under Apache 2.0 license.
+Copy of the Apache 2.0 license can be found in `LICENSES/Apache-2.0.txt` file.
+
+minim
+Copyright (c) 2014 Stephen Mizell
+Code in ts-minim is based on https://github.com/refractproject/minim and was originally created under MIT license.
+The code has been copied into this project and modified. All modifications are licensed under Apache 2.0 License.
+Copy of the MIT license can be found in `LICENSES/MIT.txt` file.
+

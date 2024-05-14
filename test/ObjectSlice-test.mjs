@@ -1,5 +1,5 @@
-const { expect } = require('./spec-helper');
-const { MemberElement, ObjectSlice } = require('../lib/minim');
+import { expect } from 'chai';
+import { MemberElement, ObjectSlice } from '../src/minim.js';
 
 describe('ObjectSlice', () => {
   const thisArg = { message: 42 };

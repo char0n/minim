@@ -1,6 +1,3 @@
-test
+/test
 .eslintrc
-.travis.yml
-karma.conf.js
-dist/.git-keep
-dist/lib
+/dist

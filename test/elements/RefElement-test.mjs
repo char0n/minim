@@ -1,8 +1,5 @@
-const { expect } = require('../spec-helper');
-const minim = require('../../lib/minim');
-
-const { RefElement } = minim;
-const { StringElement } = minim;
+import { expect } from 'chai';
+import { RefElement, StringElement } from '../../src/minim.js';
 
 describe('Ref Element', () => {
   it('has ref element name', () => {

@@ -1,7 +1,8 @@
-const { expect } = require('./spec-helper');
-const minim = require('../lib/minim');
-const Namespace = require('../lib/Namespace');
-const JSONSerialiser = require('../lib/serialisers/JSONSerialiser');
+import { expect } from 'chai';
+
+import minim from '../src/minim.js';
+import  Namespace from '../src/Namespace.js';
+import JSONSerialiser from '../src/serialisers/JSONSerialiser.js';
 
 describe('Minim namespace', () => {
   let namespace;

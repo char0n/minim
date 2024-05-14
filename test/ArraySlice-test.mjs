@@ -1,9 +1,7 @@
-const { expect } = require('./spec-helper');
-const minim = require('../lib/minim');
+import { expect } from 'chai';
 
-const { Element } = minim;
-const { StringElement } = minim;
-const { ArraySlice } = minim;
+import { Element, StringElement, ArraySlice } from '../src/minim.js';
+
 
 describe('ArraySlice', () => {
   const thisArg = { message: 42 };

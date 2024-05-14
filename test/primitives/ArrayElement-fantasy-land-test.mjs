@@ -1,7 +1,9 @@
-const fl = require('fantasy-land');
-const { expect } = require('../spec-helper');
-const namespace = require('../../lib/minim').namespace();
+import fl from 'fantasy-land';
+import { expect } from 'chai';
 
+import { namespace as namespaceCreator } from '../../src/minim.js';
+
+const namespace = namespaceCreator();
 const ArrayElement = namespace.getElementClass('array');
 
 describe('ArrayElement', () => {

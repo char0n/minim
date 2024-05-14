@@ -1,6 +1,8 @@
-const { expect } = require('./spec-helper');
-const minim = require('../lib/minim').namespace();
+import { expect } from 'chai';
 
+import { namespace } from '../src/minim.js';
+
+const minim = namespace();
 const ArrayElement = minim.getElementClass('array');
 const StringElement = minim.getElementClass('string');
 

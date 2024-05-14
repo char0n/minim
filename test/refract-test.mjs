@@ -1,6 +1,7 @@
-const { expect } = require('./spec-helper');
-const minim = require('../lib/minim');
-const { refract } = require('../lib/minim');
+import { expect } from 'chai';
+
+import minim from '../src/minim.js';
+import { refract } from '../src/minim.js';
 
 describe('refract', () => {
   it('returns any given element without refracting', () => {
