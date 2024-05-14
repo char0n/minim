@@ -1,6 +1,7 @@
-const isEqual = require('lodash/isEqual');
-const KeyValuePair = require('../KeyValuePair.js');
-const ArraySlice = require('../ArraySlice.js');
+import isEqual from 'lodash/isEqual.js';
+
+import KeyValuePair from '../KeyValuePair.js';
+import ArraySlice from '../ArraySlice.js';
 
 /**
  * @class
@@ -466,4 +467,4 @@ class Element {
   }
 }
 
-module.exports = Element;
+export default Element;

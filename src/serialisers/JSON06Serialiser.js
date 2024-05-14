@@ -1,6 +1,6 @@
-const JSONSerialiser = require('./JSONSerialiser.js');
+import JSONSerialiser from './JSONSerialiser.js';
 
-module.exports = class JSON06Serialiser extends JSONSerialiser {
+class JSON06Serialiser extends JSONSerialiser {
   serialise(element) {
     if (!(element instanceof this.namespace.elements.Element)) {
       throw new TypeError(`Given element \`${element}\` is not an Element instance`);
@@ -407,4 +407,6 @@ module.exports = class JSON06Serialiser extends JSONSerialiser {
       to.set(key, this.deserialise(from[key]));
     });
   }
-};
+}
+
+export default JSON06Serialiser;

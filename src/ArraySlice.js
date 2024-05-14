@@ -1,6 +1,6 @@
-const negate = require('lodash/negate.js');
+import negate from 'lodash/negate.js';
 
-// Coerces an a parameter into a callback for matching elements.
+// Coerces a parameter into a callback for matching elements.
 // This accepts an element name, an element type and returns a
 // callback to match for those elements.
 function coerceElementMatchingCallback(value) {
@@ -235,4 +235,4 @@ if (typeof Symbol !== 'undefined') {
   };
 }
 
-module.exports = ArraySlice;
+export default ArraySlice;

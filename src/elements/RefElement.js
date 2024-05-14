@@ -1,4 +1,4 @@
-const Element = require('../primitives/Element.js');
+import Element from '../primitives/Element.js';
 
 /**
  * @class RefElement
@@ -9,7 +9,7 @@ const Element = require('../primitives/Element.js');
  *
  * @extends Element
  */
-module.exports = class RefElement extends Element {
+class RefElement extends Element {
   constructor(content, meta, attributes) {
     super(content || [], meta, attributes);
     this.element = 'ref';
@@ -31,4 +31,6 @@ module.exports = class RefElement extends Element {
   set path(newValue) {
     this.attributes.set('path', newValue);
   }
-};
+}
+
+export default RefElement;

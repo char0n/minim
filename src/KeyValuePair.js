@@ -28,4 +28,4 @@ class KeyValuePair {
   }
 }
 
-module.exports = KeyValuePair;
+export default KeyValuePair;

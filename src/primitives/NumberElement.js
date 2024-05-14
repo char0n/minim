@@ -1,4 +1,4 @@
-const Element = require('./Element.js');
+import Element from './Element.js';
 
 /**
  * @class NumberElement
@@ -7,7 +7,7 @@ const Element = require('./Element.js');
  * @param meta
  * @param attributes
  */
-module.exports = class NumberElement extends Element {
+class NumberElement extends Element {
   constructor(content, meta, attributes) {
     super(content, meta, attributes);
     this.element = 'number';
@@ -16,4 +16,6 @@ module.exports = class NumberElement extends Element {
   primitive() {
     return 'number';
   }
-};
+}
+
+export default NumberElement;

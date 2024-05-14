@@ -1,8 +1,7 @@
-const negate = require('lodash/negate');
-const ArraySlice = require('./ArraySlice.js');
+import negate from 'lodash/negate.js';
 
-/**
- */
+import ArraySlice from './ArraySlice.js';
+
 class ObjectSlice extends ArraySlice {
   map(callback, thisArg) {
     return this.elements.map(member => callback.bind(thisArg)(member.value, member.key, member));
@@ -35,4 +34,4 @@ class ObjectSlice extends ArraySlice {
   }
 }
 
-module.exports = ObjectSlice;
+export default ObjectSlice;

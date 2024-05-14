@@ -1,9 +1,9 @@
-const negate = require('lodash/negate');
-const isObject = require('lodash/isObject');
+import negate from 'lodash/negate.js';
+import isObject from 'lodash/isObject.js';
 
-const ArrayElement = require('./ArrayElement.js');
-const MemberElement = require('./MemberElement.js');
-const ObjectSlice = require('../ObjectSlice.js');
+import ArrayElement from './ArrayElement.js';
+import MemberElement from './MemberElement.js';
+import ObjectSlice from '../ObjectSlice.js';
 
 /**
  * @class
@@ -198,4 +198,4 @@ class ObjectElement extends ArrayElement {
   }
 }
 
-module.exports = ObjectElement;
+export default ObjectElement;

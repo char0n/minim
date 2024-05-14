@@ -149,5 +149,4 @@ class JSONSerialiser {
   }
 }
 
-
-module.exports = JSONSerialiser;
+export default JSONSerialiser;

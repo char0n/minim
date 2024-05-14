@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import minim from '../src/minim.js';
+import * as minim from '../src/minim.js';
 import  Namespace from '../src/Namespace.js';
 import JSONSerialiser from '../src/serialisers/JSONSerialiser.js';
 

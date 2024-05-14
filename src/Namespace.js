@@ -1,11 +1,11 @@
-const isNull = require('lodash/isNull');
-const isString = require('lodash/isString');
-const isNumber = require('lodash/isNumber');
-const isBoolean = require('lodash/isBoolean');
-const isObject = require('lodash/isObject');
+import isNull from  'lodash/isNull.js';
+import isString from  'lodash/isString.js';
+import isNumber from  'lodash/isNumber.js';
+import isBoolean from  'lodash/isBoolean.js';
+import isObject from  'lodash/isObject.js';
 
-const JSONSerialiser = require('./serialisers/JSONSerialiser.js');
-const elements = require('./elements.js');
+import JSONSerialiser from './serialisers/JSONSerialiser.js';
+import * as elements from './elements.js';
 
 /**
  * @class
@@ -210,4 +210,4 @@ class Namespace {
 
 JSONSerialiser.prototype.Namespace = Namespace;
 
-module.exports = Namespace;
+export default Namespace;

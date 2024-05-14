@@ -1,18 +1,18 @@
-const Element = require('./primitives/Element.js');
-const NullElement = require('./primitives/NullElement.js');
-const StringElement = require('./primitives/StringElement.js');
-const NumberElement = require('./primitives/NumberElement.js');
-const BooleanElement = require('./primitives/BooleanElement.js');
-const ArrayElement = require('./primitives/ArrayElement.js');
-const MemberElement = require('./primitives/MemberElement.js');
-const ObjectElement = require('./primitives/ObjectElement.js');
-const LinkElement = require('./elements/LinkElement.js');
-const RefElement = require('./elements/RefElement.js');
+import Element from './primitives/Element.js';
+import NullElement from './primitives/NullElement.js';
+import StringElement from './primitives/StringElement.js';
+import NumberElement from './primitives/NumberElement.js';
+import BooleanElement from './primitives/BooleanElement.js';
+import ArrayElement from './primitives/ArrayElement.js';
+import MemberElement from './primitives/MemberElement.js';
+import ObjectElement from './primitives/ObjectElement.js';
+import LinkElement from './elements/LinkElement.js';
+import RefElement from './elements/RefElement.js';
 
-const ArraySlice = require('./ArraySlice.js');
-const ObjectSlice = require('./ObjectSlice.js');
+import ArraySlice from './ArraySlice.js';
+import ObjectSlice from './ObjectSlice.js';
 
-const KeyValuePair = require('./KeyValuePair.js');
+import KeyValuePair from './KeyValuePair.js';
 
 /**
  * Refracts a JSON type to minim elements
@@ -63,7 +63,7 @@ ArraySlice.prototype.refract = refract;
  * Contains all of the element classes, and related structures and methods
  * for handling with element instances.
  */
-module.exports = {
+export {
   Element,
   NullElement,
   StringElement,

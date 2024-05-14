@@ -1,4 +1,4 @@
-const Element = require('../primitives/Element.js');
+import Element from '../primitives/Element.js';
 
 /** Hyperlinking MAY be used to link to other resources, provide links to
  * instructions on how to process a given element (by way of a profile or
@@ -12,7 +12,7 @@ const Element = require('../primitives/Element.js');
  * @param meta
  * @param attributes
  */
-module.exports = class LinkElement extends Element {
+class LinkElement extends Element {
   constructor(content, meta, attributes) {
     super(content || [], meta, attributes);
     this.element = 'link';
@@ -41,4 +41,6 @@ module.exports = class LinkElement extends Element {
   set href(href) {
     this.attributes.set('href', href);
   }
-};
+}
+
+export default LinkElement;

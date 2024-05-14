@@ -1,9 +1,8 @@
-const { expect } = require('../spec-helper');
-const minim = require('../../lib/minim').namespace();
-const KeyValuePair = require('../../lib/KeyValuePair');
-const {
-  RefElement, NumberElement, ArraySlice, ObjectSlice,
-} = require('../../lib/minim');
+import { expect } from 'chai';
+
+import { namespace, RefElement, NumberElement, ArraySlice, KeyValuePair, ObjectSlice } from '../../src/minim.js';
+
+const minim = namespace();
 
 describe('Element', () => {
   context('when initializing', () => {

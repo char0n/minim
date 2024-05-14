@@ -1,4 +1,4 @@
-const Element = require('./Element.js');
+import Element from './Element.js';
 
 class NullElement extends Element {
   constructor(content, meta, attributes) {
@@ -15,4 +15,4 @@ class NullElement extends Element {
   }
 }
 
-module.exports = NullElement;
+export default NullElement;

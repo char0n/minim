@@ -1,5 +1,5 @@
-const KeyValuePair = require('../KeyValuePair.js');
-const Element = require('./Element.js');
+import KeyValuePair from '../KeyValuePair.js';
+import Element from './Element.js';
 
 /**
  * @class MemberElement
@@ -9,7 +9,7 @@ const Element = require('./Element.js');
  * @param meta
  * @param attributes
  */
-module.exports = class MemberElement extends Element {
+class MemberElement extends Element {
   constructor(key, value, meta, attributes) {
     super(new KeyValuePair(), meta, attributes);
 
@@ -39,4 +39,6 @@ module.exports = class MemberElement extends Element {
   set value(value) {
     this.content.value = this.refract(value);
   }
-};
+}
+
+export default MemberElement;

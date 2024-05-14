@@ -1,4 +1,4 @@
-const Element = require('./Element.js');
+import Element from './Element.js';
 
 /**
  * @class StringElement
@@ -7,7 +7,7 @@ const Element = require('./Element.js');
  * @param meta
  * @param attributes
  */
-module.exports = class StringElement extends Element {
+class StringElement extends Element {
   constructor(content, meta, attributes) {
     super(content, meta, attributes);
     this.element = 'string';
@@ -24,4 +24,6 @@ module.exports = class StringElement extends Element {
   get length() {
     return this.content.length;
   }
-};
+}
+
+export default StringElement;

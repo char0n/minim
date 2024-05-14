@@ -1,6 +1,7 @@
-const negate = require('lodash/negate');
-const Element = require('./Element.js');
-const ArraySlice = require('../ArraySlice.js');
+import negate from 'lodash/negate.js';
+
+import Element from './Element.js';
+import ArraySlice from '../ArraySlice.js';
 
 /**
  * @class
@@ -388,4 +389,4 @@ if (typeof Symbol !== 'undefined') {
   };
 }
 
-module.exports = ArrayElement;
+export default ArrayElement;

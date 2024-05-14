@@ -1,4 +1,4 @@
-const Element = require('./Element.js');
+import Element from './Element.js';
 
 /**
  * @class BooleanElement
@@ -7,7 +7,7 @@ const Element = require('./Element.js');
  * @param meta
  * @param attributes
  */
-module.exports = class BooleanElement extends Element {
+class BooleanElement extends Element {
   constructor(content, meta, attributes) {
     super(content, meta, attributes);
     this.element = 'boolean';
@@ -16,4 +16,6 @@ module.exports = class BooleanElement extends Element {
   primitive() {
     return 'boolean';
   }
-};
+}
+
+export default BooleanElement;

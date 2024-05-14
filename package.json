@@ -2,6 +2,7 @@
   "name": "ts-minim",
   "version": "1.0.0-alpha.1",
   "description": "A library for interacting with JSON through Refract elements",
+  "type": "module",
   "author": "Stephen Mizell",
   "contributors": [
     {

@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-import minim from '../src/minim.js';
+import * as minim from '../src/minim.js';
 import { refract } from '../src/minim.js';
 
 describe('refract', () => {
