@@ -1,18 +1,15 @@
-/**
- * @class
- *
- * @property {Element} key
- * @property {Element} value
- */
-class KeyValuePair {
-  constructor(key, value) {
-    this.key = key;
-    this.value = value;
+import type Element from './primitives/Element';
+
+class KeyValuePair<K extends Element<unknown> | undefined, V extends Element<unknown> | undefined> {
+  public key: K;
+
+  public value: V;
+
+  constructor(key?: K, value?: V) {
+    this.key = key as K;
+    this.value = value as V;
   }
 
-  /**
-   * @returns {KeyValuePair}
-   */
   clone() {
     const clone = new KeyValuePair();
 
