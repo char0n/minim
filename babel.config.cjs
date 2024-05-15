@@ -9,6 +9,12 @@ module.exports = {
       browserslistEnv: "isomorphic-production",
       presets: [
         [
+          '@babel/preset-typescript',
+          {
+            allowDeclareFields: true,
+          }
+        ],
+        [
           '@babel/preset-env',
           {
             debug: false,
@@ -21,8 +27,10 @@ module.exports = {
         ],
       ],
       plugins: [
-        [path.join(__dirname, './scripts/babel-plugin-add-import-extension.cjs'), { extension: 'cjs' }],
-      ]
+        process.env.NODE_ENV !== 'test'
+          ? [path.join(__dirname, './scripts/babel-plugin-add-import-extension.cjs'), { extension: 'cjs' }]
+          : false
+      ].filter(Boolean)
     },
     es: {
       browserslistEnv: "isomorphic-production",
@@ -36,6 +44,12 @@ module.exports = {
             forceAllTransforms: false,
             ignoreBrowserslistConfig: false,
           },
+        ],
+        [
+          '@babel/preset-typescript',
+          {
+            allowDeclareFields: true,
+          }
         ],
       ],
       plugins: [

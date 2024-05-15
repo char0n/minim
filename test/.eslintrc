@@ -22,7 +22,7 @@
     "mocha/no-identical-title": 2,
     "mocha/no-nested-tests": 2,
     "mocha/no-exclusive-tests": 2,
-    "no-unused-expressions": 0,
-    "class-methods-use-this": 0
+    "class-methods-use-this": 0,
+    "@typescript-eslint/no-unused-expressions": 0
   }
 }
